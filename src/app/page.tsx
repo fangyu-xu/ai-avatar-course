@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Button } from "../components/ui/button";
 import {
@@ -6,11 +7,12 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
-  DialogFooter,
 } from "../components/ui/dialog";
+import { Input } from "../components/ui/input";
 
-export default async function Home() {
+export default function Home() {
+  const [email, setEmail] = React.useState("");
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
       <div>Create your own photo realistic AI avatars</div>
@@ -23,12 +25,24 @@ export default async function Home() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>Complete authentification</DialogTitle>
-            <DialogDescription>
-              Two authentification flows are here
-            </DialogDescription>
-            <div>here is the other content of the dialog</div>
-            <DialogFooter>This is dialog footer</DialogFooter>
           </DialogHeader>
+          <form
+            onSubmit={(e) => {
+              console.log(e);
+            }}
+            className="flex flex-col space-y-4"
+          >
+            <Input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <Button type="submit" onClick={() => console.log(email)}>
+              Verify your email
+            </Button>
+            Or
+            <Button>Sign in with Google</Button>
+          </form>
         </DialogContent>
       </Dialog>
     </main>
